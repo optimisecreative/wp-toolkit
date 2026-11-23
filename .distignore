@@ -1,0 +1,8 @@
+# Files left out of the WordPress.org release zip.
+.git
+.github
+.gitignore
+.distignore
+.DS_Store
+README.md
+*.zip

@@ -1,0 +1,24 @@
+/* Optimise Creative Toolkit settings page. */
+.optk-wrap { --optk-accent: #6C4860; --optk-secondary: #FC8478; --optk-muted: #50575e; --optk-border: #dcdcde; max-width: 1100px; }
+.optk-intro { color: var(--optk-muted); font-size: 14px; max-width: 640px; }
+.optk-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; margin: 20px 0; }
+.optk-card { background: #fff; border: 1px solid var(--optk-border); border-radius: 8px; padding: 20px; }
+.optk-card.is-on { border-left: 4px solid var(--optk-accent); }
+.optk-toggle { display: flex; align-items: center; gap: 8px; cursor: pointer; }
+.optk-card-title { font-weight: 700; font-size: 15px; }
+.optk-card-desc { color: var(--optk-muted); margin: 8px 0 0; }
+.optk-fields { display: flex; flex-direction: column; gap: 12px; border-top: 1px solid var(--optk-border); margin-top: 16px; padding-top: 16px; }
+/* Hides settings until the module is switched on, live, without JS. */
+.optk-card:not(:has(.optk-toggle input:checked)) .optk-fields { display: none; }
+.optk-field > label { display: block; font-weight: 600; }
+.optk-field-checkbox > label { display: inline; font-weight: 400; }
+.optk-field input:not([type="checkbox"]), .optk-field select, .optk-field textarea { max-width: 100%; box-sizing: border-box; }
+.optk-field :focus { outline: 2px solid var(--optk-secondary); }
+.optk-footer { color: var(--optk-muted); font-size: 12px; margin-top: 24px; }
+.optk-footer a { color: var(--optk-accent); }
+.optk-transfer, .optk-about { max-width: 640px; margin-top: 20px; }
+.optk-about { border-left: 4px solid var(--optk-secondary); }
+.optk-about h2, .optk-transfer h2 { margin-top: 0; }
+.optk-card-desc a { white-space: nowrap; }
+.optk-cta { margin-top: 12px; color: #50575e; }
+.optk-cta a { color: #6C4860; font-weight: 600; }
