@@ -10,11 +10,12 @@ defined( 'ABSPATH' ) || exit;
 final class OPTK_Client_Mode extends OPTK_Module {
 
 	/**
-	 * Cached result of is_restricted() for this request.
+	 * Cached is_restricted() results, keyed by user ID, so a check made before the
+	 * current user is known (or after it changes) never sticks for the whole request.
 	 *
-	 * @var bool|null
+	 * @var array<int, bool>
 	 */
-	private ?bool $restricted = null;
+	private array $restricted = [];
 
 	/** {@inheritdoc} */
 	public function id(): string {
@@ -99,6 +100,47 @@ final class OPTK_Client_Mode extends OPTK_Module {
 		if ( $this->opt( 'widget' ) ) {
 			add_action( 'wp_dashboard_setup', [ $this, 'add_dashboard_widget' ] );
 		}
+
+		// Always on: restricted users must not be able to lift their own restrictions,
+		// e.g. by adding themselves to the developer list or switching Client Mode off.
+		add_action( 'admin_init', [ $this, 'block_toolkit_settings' ], 1 );
+		add_filter( 'pre_update_option_' . OPTK_OPTION, [ $this, 'protect_option' ], 10, 2 );
+	}
+
+	/** Stops restricted users opening the toolkit settings page or running import/export. */
+	public function block_toolkit_settings(): void {
+		if ( ! $this->is_restricted() ) {
+			return;
+		}
+
+		global $pagenow;
+		// phpcs:disable WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
+		$page   = isset( $_GET['page'] ) ? sanitize_key( wp_unslash( $_GET['page'] ) ) : '';
+		$action = isset( $_REQUEST['action'] ) ? sanitize_key( wp_unslash( $_REQUEST['action'] ) ) : '';
+		// phpcs:enable
+
+		$is_settings_page = 'options-general.php' === $pagenow && 'optimise-creative-toolkit' === $page;
+		$is_transfer      = 'admin-post.php' === $pagenow && in_array( $action, [ 'optk_export', 'optk_import' ], true );
+
+		if ( $is_settings_page || $is_transfer ) {
+			wp_die(
+				esc_html__( 'These settings are managed by your website developer.', 'optimise-creative-toolkit' ),
+				esc_html__( 'Not allowed', 'optimise-creative-toolkit' ),
+				[ 'response' => 403 ]
+			);
+		}
+	}
+
+	/**
+	 * Keeps the saved toolkit settings unchanged when a restricted user tries to write them,
+	 * whatever route they use (options.php, import, or another plugin).
+	 *
+	 * @param mixed $value     New value.
+	 * @param mixed $old_value Current value.
+	 * @return mixed
+	 */
+	public function protect_option( $value, $old_value ) {
+		return $this->is_restricted() ? $old_value : $value;
 	}
 
 	/**
@@ -110,28 +152,22 @@ final class OPTK_Client_Mode extends OPTK_Module {
 	 * @return bool
 	 */
 	private function is_restricted(): bool {
-		if ( null !== $this->restricted ) {
-			return $this->restricted;
+		$user = wp_get_current_user();
+		if ( ! $user->exists() ) {
+			return false;
 		}
 
-		if ( ! is_user_logged_in() ) {
-			$this->restricted = false;
-
-			return $this->restricted;
+		if ( isset( $this->restricted[ $user->ID ] ) ) {
+			return $this->restricted[ $user->ID ];
 		}
 
 		$names = preg_split( '/[\s,]+/', strtolower( (string) $this->opt( 'developers', '' ) ), -1, PREG_SPLIT_NO_EMPTY );
 		$names = is_array( $names ) ? $names : [];
 
-		if ( empty( $names ) ) {
-			$this->restricted = false;
+		// No developers listed: restrict nobody, so a misconfiguration can never lock everyone out.
+		$this->restricted[ $user->ID ] = ! empty( $names ) && ! in_array( strtolower( $user->user_login ), $names, true );
 
-			return $this->restricted;
-		}
-
-		$this->restricted = ! in_array( strtolower( wp_get_current_user()->user_login ), $names, true );
-
-		return $this->restricted;
+		return $this->restricted[ $user->ID ];
 	}
 
 	/** Removes the plugin, theme, tool and settings menus for restricted users. */
