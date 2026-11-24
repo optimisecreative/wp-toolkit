@@ -3,7 +3,7 @@
  * Plugin Name:       Optimise Creative Toolkit
  * Plugin URI:        https://optimisecreative.com/wp-toolkit/
  * Description:       Lightweight speed, SEO, security and admin tools from Optimise Creative. Switch on only the modules you need.
- * Version:           0.1.0
+ * Version:           1.0.0
  * Requires at least: 6.3
  * Requires PHP:      8.0
  * Author:            Optimise Creative
@@ -15,7 +15,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'OPTK_VERSION', '0.1.0' );
+define( 'OPTK_VERSION', '1.0.0' );
 define( 'OPTK_FILE', __FILE__ );
 define( 'OPTK_DIR', plugin_dir_path( __FILE__ ) );
 define( 'OPTK_URL', plugin_dir_url( __FILE__ ) );

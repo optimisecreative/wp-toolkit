@@ -15,23 +15,33 @@ final class OPTK_Settings {
 
 	private const PAGE = 'optimise-creative-toolkit';
 
-	/** "Learn more" page on optimisecreative.com for each module. */
-	private const HELP = [
-		'clean'        => 'wordpress-speed-optimisation/',
-		'lazy-hero'    => 'wordpress-speed-optimisation/',
-		'upload-guard' => 'wordpress-speed-optimisation/',
-		'revisions'    => 'wordpress-speed-optimisation/',
-		'security'     => 'wordpress-security-review/',
-		'alt'          => 'website-accessibility-fixes/',
-		'noindex'      => 'website-optimisation/',
-		'scripts'      => 'google-analytics-setup/',
-		'mail-from'    => 'wordpress-contact-form-not-sending-emails/',
-		'client-mode'  => 'agencies/',
-		'environment'  => 'website-support/',
-		'duplicate'    => 'website-support/',
-		'comments-off' => 'website-support/',
-		'login'        => 'website-support/',
-	];
+	/**
+	 * Branded page header shared by every toolkit screen.
+	 *
+	 * @param string $title    Page title (already translated).
+	 * @param string $subtitle Optional line under the title (already translated).
+	 */
+	public static function header( string $title, string $subtitle = '' ): void {
+		?>
+		<div class="optk-header">
+			<a class="optk-header-logo" href="<?php echo esc_url( optk_link( '', 'header-logo' ) ); ?>" target="_blank" rel="noopener">
+				<img src="<?php echo esc_url( OPTK_URL . 'assets/logo.png' ); ?>" width="64" height="37" alt="<?php esc_attr_e( 'Optimise Creative website (opens in a new tab)', 'optimise-creative-toolkit' ); ?>">
+			</a>
+			<div class="optk-header-text">
+				<h1><?php echo esc_html( $title ); ?></h1>
+				<?php if ( '' !== $subtitle ) : ?>
+					<p><?php echo esc_html( $subtitle ); ?></p>
+				<?php endif; ?>
+			</div>
+			<span class="optk-badge">
+				<?php
+				/* translators: %s: plugin version number. */
+				printf( esc_html__( 'v%s', 'optimise-creative-toolkit' ), esc_html( OPTK_VERSION ) );
+				?>
+			</span>
+		</div>
+		<?php
+	}
 
 	/** @var OPTK_Module[] */
 	private array $modules;
@@ -138,8 +148,7 @@ final class OPTK_Settings {
 		$enabled = (array) ( $saved['enabled'] ?? [] );
 		?>
 		<div class="wrap optk-wrap">
-			<h1><?php esc_html_e( 'Optimise Creative Toolkit', 'optimise-creative-toolkit' ); ?></h1>
-			<p class="optk-intro"><?php esc_html_e( 'Switch on the modules this site needs. Everything else stays off and loads nothing.', 'optimise-creative-toolkit' ); ?></p>
+			<?php self::header( __( 'Optimise Creative Toolkit', 'optimise-creative-toolkit' ), __( 'Switch on the modules this site needs. Modules you leave off do nothing to your site.', 'optimise-creative-toolkit' ) ); ?>
 
 			<form method="post" action="options.php">
 				<?php settings_fields( self::PAGE ); ?>
@@ -155,9 +164,6 @@ final class OPTK_Settings {
 							</label>
 							<p class="optk-card-desc">
 								<?php echo esc_html( $module->description() ); ?>
-								<?php if ( isset( self::HELP[ $id ] ) ) : ?>
-									<a href="<?php echo esc_url( optk_link( self::HELP[ $id ], 'module-' . $id ) ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'Learn more', 'optimise-creative-toolkit' ); ?><span class="screen-reader-text"> <?php esc_html_e( '(opens in a new tab)', 'optimise-creative-toolkit' ); ?></span></a>
-								<?php endif; ?>
 							</p>
 
 							<?php if ( $module->fields() ) : ?>
@@ -180,7 +186,20 @@ final class OPTK_Settings {
 			?>
 
 			<div class="optk-card optk-about">
-				<h2><?php esc_html_e( 'Made by Optimise Creative', 'optimise-creative-toolkit' ); ?></h2>
+				<div class="optk-about-head">
+					<a class="optk-about-logo" href="<?php echo esc_url( optk_link( '', 'about-logo' ) ); ?>" target="_blank" rel="noopener">
+						<img src="<?php echo esc_url( OPTK_URL . 'assets/logo.png' ); ?>" width="96" height="56" alt="<?php esc_attr_e( 'Optimise Creative website (opens in a new tab)', 'optimise-creative-toolkit' ); ?>">
+					</a>
+					<div>
+						<h2>
+							<?php
+							/* translators: %s: heart emoji. */
+							printf( esc_html__( 'Made with %s by Optimise Creative', 'optimise-creative-toolkit' ), '<svg class="optk-heart" role="img" aria-label="' . esc_attr__( 'love', 'optimise-creative-toolkit' ) . '" viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M12 21s-7.5-4.6-10-9.3C.4 8.6 2 4.5 5.9 4.1 8.4 3.8 10.3 5.3 12 7.4c1.7-2.1 3.6-3.6 6.1-3.3C22 4.5 23.6 8.6 22 11.7 19.5 16.4 12 21 12 21z"/></svg>' );
+							?>
+						</h2>
+						<a class="optk-about-domain" href="<?php echo esc_url( optk_link( '', 'about-domain' ) ); ?>" target="_blank" rel="noopener">optimisecreative.com</a>
+					</div>
+				</div>
 				<p><?php esc_html_e( 'Optimise Creative Toolkit is free and always will be. We are a UK studio that builds fast, search-friendly WordPress sites, and this is the toolkit we install on every one of them.', 'optimise-creative-toolkit' ); ?></p>
 				<p><?php esc_html_e( 'If your site needs more than a toolkit, such as speed work, a security review, accessibility fixes or a custom plugin, we can help.', 'optimise-creative-toolkit' ); ?></p>
 				<p>
@@ -189,15 +208,6 @@ final class OPTK_Settings {
 				</p>
 			</div>
 
-			<p class="optk-footer">
-				<?php
-				printf(
-					/* translators: %s: link to Optimise Creative */
-					esc_html__( 'Built by %s', 'optimise-creative-toolkit' ),
-					'<a href="' . esc_url( optk_link( '', 'footer' ) ) . '" target="_blank" rel="noopener">Optimise Creative</a>'
-				);
-				?>
-			</p>
 		</div>
 		<?php
 	}

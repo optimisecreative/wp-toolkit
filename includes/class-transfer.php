@@ -12,8 +12,8 @@ final class OPTK_Transfer {
 
 	public function init(): void {
 		add_action( 'optk_settings_after', [ $this, 'render' ] );
-		add_action( 'admin_post_ot_export', [ $this, 'export' ] );
-		add_action( 'admin_post_ot_import', [ $this, 'import' ] );
+		add_action( 'admin_post_optk_export', [ $this, 'export' ] );
+		add_action( 'admin_post_optk_import', [ $this, 'import' ] );
 		add_action( 'admin_notices', [ $this, 'notice' ] );
 	}
 

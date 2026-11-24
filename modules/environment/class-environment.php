@@ -96,10 +96,10 @@ final class OPTK_Environment extends OPTK_Module {
 		}
 
 		$colour = $this->colour();
-		$css    = '#wpadminbar .optk-env > .ab-item { background: ' . $colour . '; color: #fff; font-weight: 600; }';
+		$css    = 'html body #wpadminbar .optk-env > .ab-item { background: ' . $colour . '; color: #fff; font-weight: 600; }';
 
 		if ( ! $this->is_prod() ) {
-			$css .= '#wpadminbar { background: ' . $colour . '; }';
+			$css .= 'html body #wpadminbar { background: ' . $colour . '; }';
 		}
 
 		wp_add_inline_style( 'admin-bar', $css );

@@ -76,15 +76,14 @@ final class OPTK_Clean extends OPTK_Module {
 	public function boot(): void {
 		if ( $this->opt( 'emojis' ) ) {
 			remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
-			remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
 			remove_action( 'wp_print_styles', 'print_emoji_styles' );
-			remove_action( 'admin_print_styles', 'print_emoji_styles' );
 			remove_filter( 'the_content_feed', 'wp_staticize_emoji' );
 			remove_filter( 'comment_text_rss', 'wp_staticize_emoji' );
 			remove_filter( 'wp_mail', 'wp_staticize_emoji_for_email' );
 			add_filter( 'tiny_mce_plugins', [ $this, 'drop_tinymce_emoji_plugin' ] );
-			// Returning false drops the emoji CDN dns-prefetch hint, which core skips when the URL is empty.
-			add_filter( 'emoji_svg_url', '__return_false' );
+			// Admin emoji hooks are added after plugins load, so remove them once they exist.
+			add_action( 'admin_init', [ $this, 'remove_admin_emoji' ] );
+			add_filter( 'wp_resource_hints', [ $this, 'drop_emoji_hint' ], 10, 2 );
 		}
 
 		if ( $this->opt( 'embeds' ) ) {
@@ -95,6 +94,8 @@ final class OPTK_Clean extends OPTK_Module {
 
 		if ( $this->opt( 'xmlrpc' ) ) {
 			add_filter( 'xmlrpc_enabled', '__return_false' );
+			// xmlrpc_enabled only blocks methods that need a login; this removes the rest, including pingback.ping.
+			add_filter( 'xmlrpc_methods', '__return_empty_array', 999 );
 			remove_action( 'wp_head', 'rsd_link' );
 			add_filter( 'wp_headers', [ $this, 'drop_pingback_header' ] );
 		}
@@ -119,6 +120,35 @@ final class OPTK_Clean extends OPTK_Module {
 			add_filter( 'heartbeat_settings', [ $this, 'set_heartbeat_interval' ] );
 			add_action( 'init', [ $this, 'deregister_heartbeat_on_front_end' ] );
 		}
+	}
+
+	/** Removes the admin emoji script and styles, which core hooks in after plugins load. */
+	public function remove_admin_emoji(): void {
+		remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
+		remove_action( 'admin_print_styles', 'print_emoji_styles' );
+	}
+
+	/**
+	 * Drops the emoji CDN dns-prefetch hint that older WordPress versions add.
+	 *
+	 * @param array|mixed $urls          URLs to hint.
+	 * @param string      $relation_type Hint type, e.g. 'dns-prefetch'.
+	 * @return array|mixed
+	 */
+	public function drop_emoji_hint( $urls, $relation_type ) {
+		if ( 'dns-prefetch' !== $relation_type || ! is_array( $urls ) ) {
+			return $urls;
+		}
+
+		return array_values(
+			array_filter(
+				$urls,
+				static function ( $url ) {
+					$href = is_array( $url ) ? (string) ( $url['href'] ?? '' ) : (string) $url;
+					return false === strpos( $href, '/images/core/emoji/' );
+				}
+			)
+		);
 	}
 
 	/**

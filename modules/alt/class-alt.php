@@ -27,7 +27,7 @@ final class OPTK_Alt extends OPTK_Module {
 	/** {@inheritdoc} */
 	public function boot(): void {
 		add_action( 'admin_menu', [ $this, 'add_page' ] );
-		add_action( 'wp_ajax_ot_alt_save', [ $this, 'save' ] );
+		add_action( 'wp_ajax_optk_alt_save', [ $this, 'save' ] );
 		add_action( 'admin_enqueue_scripts', [ $this, 'enqueue' ] );
 	}
 
@@ -48,7 +48,7 @@ final class OPTK_Alt extends OPTK_Module {
 	 * @param string $hook Current admin page hook.
 	 */
 	public function enqueue( $hook ): void {
-		if ( 'media_page_ot-alt' !== $hook ) {
+		if ( 'media_page_optk-alt' !== $hook ) {
 			return;
 		}
 
@@ -117,7 +117,7 @@ final class OPTK_Alt extends OPTK_Module {
 		$percent = $total > 0 ? (int) round( ( $with / $total ) * 100 ) : 100;
 
 		echo '<div class="wrap optk-wrap">';
-		echo '<h1>' . esc_html__( 'Alt Text Audit', 'optimise-creative-toolkit' ) . '</h1>';
+		OPTK_Settings::header( __( 'Alt Text Audit', 'optimise-creative-toolkit' ), __( 'Every image without alt text, ready to fix on one screen.', 'optimise-creative-toolkit' ) );
 
 		printf(
 			'<p class="optk-intro">%s</p>',

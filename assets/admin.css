@@ -1,24 +1,85 @@
-/* Optimise Creative Toolkit settings page. */
-.optk-wrap { --optk-accent: #6C4860; --optk-secondary: #FC8478; --optk-muted: #50575e; --optk-border: #dcdcde; max-width: 1100px; }
+/* Optimise Creative Toolkit admin screens. */
+.optk-wrap {
+	--optk-plum: #6C4860;
+	--optk-plum-dark: #4E3045;
+	--optk-coral: #FC8478;
+	--optk-red: #E2566A;
+	--optk-peach: #FCA874;
+	--optk-cream: #F8F1E9;
+	--optk-cream-light: #FCF9F4;
+	--optk-muted: #5f5560;
+	--optk-border: #e6dcd4;
+	/* Re-theme core admin controls (checkboxes, focus rings, buttons) to the brand plum on toolkit screens. */
+	--wp-admin-theme-color: #6C4860;
+	--wp-admin-theme-color--rgb: 108, 72, 96;
+	--wp-admin-theme-color-darker-10: #5d3e53;
+	--wp-admin-theme-color-darker-10--rgb: 93, 62, 83;
+	--wp-admin-theme-color-darker-20: #4E3045;
+	--wp-admin-theme-color-darker-20--rgb: 78, 48, 69;
+	max-width: 1100px;
+}
+.optk-wrap a { color: var(--optk-plum); }
+.optk-wrap a:hover, .optk-wrap a:focus { color: var(--optk-red); }
+
+/* Header */
+.optk-header { position: relative; display: flex; align-items: center; gap: 18px; margin: 16px 0 20px; padding: 20px 24px; background: linear-gradient(120deg, var(--optk-cream-light), var(--optk-cream)); border: 1px solid var(--optk-border); border-radius: 12px; overflow: hidden; }
+.optk-header::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: linear-gradient(90deg, var(--optk-red), var(--optk-coral), var(--optk-peach)); }
+.optk-header-logo, .optk-about-logo { flex: none; display: block; line-height: 0; border-radius: 6px; transition: transform .15s ease; }
+.optk-header-logo img { width: 64px; height: auto; }
+.optk-about-logo img { width: 96px; height: auto; }
+.optk-header-logo:hover, .optk-about-logo:hover { transform: scale(1.04); }
+.optk-header-logo:focus-visible, .optk-about-logo:focus-visible { outline: 2px solid var(--optk-plum); outline-offset: 3px; box-shadow: none; }
+.optk-header-text { flex: 1; min-width: 0; }
+.optk-wrap .optk-header h1 { margin: 0; padding: 0; font-size: 23px; font-weight: 700; line-height: 1.25; color: var(--optk-plum-dark); }
+.optk-header p { margin: 4px 0 0; color: var(--optk-muted); font-size: 14px; }
+.optk-badge { flex: none; padding: 4px 10px; border-radius: 999px; background: #fff; border: 1px solid var(--optk-border); color: var(--optk-plum); font-size: 12px; font-weight: 600; white-space: nowrap; }
 .optk-intro { color: var(--optk-muted); font-size: 14px; max-width: 640px; }
+
+/* Module cards */
 .optk-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; margin: 20px 0; }
-.optk-card { background: #fff; border: 1px solid var(--optk-border); border-radius: 8px; padding: 20px; }
-.optk-card.is-on { border-left: 4px solid var(--optk-accent); }
+.optk-card { background: #fff; border: 1px solid var(--optk-border); border-radius: 10px; padding: 20px; transition: box-shadow .15s ease; }
+.optk-card:hover { box-shadow: 0 4px 14px rgba(78, 48, 69, .08); }
+.optk-card:has(.optk-toggle input:checked) { box-shadow: inset 4px 0 0 var(--optk-plum); }
+.optk-card:has(.optk-toggle input:checked):hover { box-shadow: inset 4px 0 0 var(--optk-plum), 0 4px 14px rgba(78, 48, 69, .08); }
 .optk-toggle { display: flex; align-items: center; gap: 8px; cursor: pointer; }
-.optk-card-title { font-weight: 700; font-size: 15px; }
+.optk-card-title { font-weight: 700; font-size: 15px; color: var(--optk-plum-dark); }
 .optk-card-desc { color: var(--optk-muted); margin: 8px 0 0; }
 .optk-fields { display: flex; flex-direction: column; gap: 12px; border-top: 1px solid var(--optk-border); margin-top: 16px; padding-top: 16px; }
 /* Hides settings until the module is switched on, live, without JS. */
 .optk-card:not(:has(.optk-toggle input:checked)) .optk-fields { display: none; }
-.optk-field > label { display: block; font-weight: 600; }
-.optk-field-checkbox > label { display: inline; font-weight: 400; }
+.optk-field > label { display: block; font-weight: 600; color: var(--optk-plum-dark); }
+.optk-field-checkbox > label { display: inline; font-weight: 400; color: inherit; }
 .optk-field input:not([type="checkbox"]), .optk-field select, .optk-field textarea { max-width: 100%; box-sizing: border-box; }
-.optk-field :focus { outline: 2px solid var(--optk-secondary); }
-.optk-footer { color: var(--optk-muted); font-size: 12px; margin-top: 24px; }
-.optk-footer a { color: var(--optk-accent); }
-.optk-transfer, .optk-about { max-width: 640px; margin-top: 20px; }
-.optk-about { border-left: 4px solid var(--optk-secondary); }
-.optk-about h2, .optk-transfer h2 { margin-top: 0; }
-.optk-card-desc a { white-space: nowrap; }
-.optk-cta { margin-top: 12px; color: #50575e; }
-.optk-cta a { color: #6C4860; font-weight: 600; }
+.optk-field input[type="color"] { width: 64px; height: 34px; padding: 2px; cursor: pointer; }
+
+/* Brand form controls */
+.optk-wrap input:focus, .optk-wrap select:focus, .optk-wrap textarea:focus, .optk-wrap input[type="checkbox"]:focus { border-color: var(--optk-plum); box-shadow: 0 0 0 1px var(--optk-plum); outline: 2px solid transparent; }
+.optk-wrap .button-primary { background: var(--optk-plum); border-color: var(--optk-plum); color: #fff; }
+.optk-wrap .button-primary:hover, .optk-wrap .button-primary:focus { background: var(--optk-plum-dark); border-color: var(--optk-plum-dark); color: #fff; }
+.optk-wrap .button-primary:focus { box-shadow: 0 0 0 1px #fff, 0 0 0 3px var(--optk-plum); }
+.optk-wrap .button:not(.button-primary) { color: var(--optk-plum); border-color: var(--optk-plum); background: #fff; }
+.optk-wrap .button:not(.button-primary):hover, .optk-wrap .button:not(.button-primary):focus { color: var(--optk-plum-dark); border-color: var(--optk-plum-dark); background: var(--optk-cream-light); }
+
+/* Export / import and About cards */
+.optk-transfer, .optk-about { max-width: 720px; margin-top: 20px; }
+.optk-wrap .optk-about h2, .optk-wrap .optk-transfer h2 { margin-top: 0; color: var(--optk-plum-dark); }
+.optk-about { position: relative; background: linear-gradient(120deg, var(--optk-cream-light), var(--optk-cream)); overflow: hidden; }
+.optk-about::before { content: ""; position: absolute; right: -80px; top: -80px; width: 260px; height: 260px; border-radius: 50%; background: radial-gradient(circle, rgba(252, 168, 116, .30), rgba(252, 132, 120, .10) 55%, transparent 72%); pointer-events: none; }
+.optk-about > * { position: relative; }
+.optk-about-head { display: flex; align-items: center; gap: 16px; margin-bottom: 12px; }
+.optk-wrap .optk-about-head h2 { margin: 0; font-size: 18px; }
+.optk-wrap .optk-about-domain { display: inline-block; margin-top: 2px; font-weight: 600; text-decoration: none; }
+.optk-wrap .optk-about-domain:hover, .optk-wrap .optk-about-domain:focus { text-decoration: underline; }
+.optk-about p { color: var(--optk-muted); }
+.optk-about .button { margin: 0 6px 6px 0; }
+
+.optk-heart { display: inline-block; vertical-align: -2px; color: var(--optk-red); }
+
+/* Alt audit */
+.optk-cta { margin-top: 12px; color: var(--optk-muted); }
+.optk-cta a { font-weight: 600; }
+
+@media (max-width: 600px) {
+	.optk-header { flex-wrap: wrap; padding: 16px; }
+	.optk-badge { order: -1; margin-left: auto; }
+}

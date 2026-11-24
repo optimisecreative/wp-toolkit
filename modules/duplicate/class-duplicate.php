@@ -28,7 +28,7 @@ final class OPTK_Duplicate extends OPTK_Module {
 	public function boot(): void {
 		add_filter( 'post_row_actions', [ $this, 'add_row_action' ], 10, 2 );
 		add_filter( 'page_row_actions', [ $this, 'add_row_action' ], 10, 2 );
-		add_action( 'admin_action_ot_duplicate', [ $this, 'handle' ] );
+		add_action( 'admin_action_optk_duplicate', [ $this, 'handle' ] );
 	}
 
 	/**

@@ -4,7 +4,7 @@ Tags: performance, optimisation, alt text, client, login
 Requires at least: 6.3
 Tested up to: 7.1
 Requires PHP: 8.0
-Stable tag: 0.1.0
+Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -78,5 +78,6 @@ Yes. [Get in touch with Optimise Creative](https://optimisecreative.com/contact/
 
 == Changelog ==
 
-= 0.1.0 =
-* Initial release.
+= 1.0.0 =
+* Initial release with 14 modules: Clean, Security Headers, Environment, Duplicate, Lazy Hero, Upload Guard, Alt, Noindex, Revisions, Comments Off, Scripts, Mail From, Client Mode and Login.
+* Settings export and import.
