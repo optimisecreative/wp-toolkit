@@ -16,12 +16,12 @@ final class OPTK_Revisions extends OPTK_Module {
 
 	/** {@inheritdoc} */
 	public function label(): string {
-		return 'Optimise Revisions';
+		return __( 'Optimise Revisions', 'optimise-creative-toolkit' );
 	}
 
 	/** {@inheritdoc} */
 	public function description(): string {
-		return 'Keeps the database lean by limiting how many revisions each post stores and how often the block editor autosaves.';
+		return __( 'Keeps the database lean by limiting how many revisions each post stores and how often the block editor autosaves.', 'optimise-creative-toolkit' );
 	}
 
 	/** {@inheritdoc} */
@@ -29,17 +29,17 @@ final class OPTK_Revisions extends OPTK_Module {
 		return [
 			[
 				'key'     => 'keep',
-				'label'   => 'Revisions to keep per post',
+				'label'   => __( 'Revisions to keep per post', 'optimise-creative-toolkit' ),
 				'type'    => 'number',
 				'default' => 5,
-				'help'    => 'Older revisions are removed the next time a post is saved. Set 0 to stop saving revisions.',
+				'help'    => __( 'Older revisions are removed the next time a post is saved. Set 0 to stop saving revisions.', 'optimise-creative-toolkit' ),
 			],
 			[
 				'key'     => 'autosave',
-				'label'   => 'Block editor autosave interval (seconds)',
+				'label'   => __( 'Block editor autosave interval (seconds)', 'optimise-creative-toolkit' ),
 				'type'    => 'number',
 				'default' => 120,
-				'help'    => 'How often the block editor autosaves drafts. WordPress uses 60 seconds by default.',
+				'help'    => __( 'How often the block editor autosaves drafts. WordPress uses 60 seconds by default.', 'optimise-creative-toolkit' ),
 			],
 		];
 	}

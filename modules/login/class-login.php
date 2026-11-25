@@ -12,43 +12,43 @@ final class OPTK_Login extends OPTK_Module {
 	}
 
 	public function label(): string {
-		return 'Optimise Login';
+		return __( 'Optimise Login', 'optimise-creative-toolkit' );
 	}
 
 	public function description(): string {
-		return 'Brands the login screen with your logo and colours.';
+		return __( 'Brands the login screen with your logo and colours.', 'optimise-creative-toolkit' );
 	}
 
 	public function fields(): array {
 		return [
 			[
 				'key'     => 'logo_url',
-				'label'   => 'Logo URL',
+				'label'   => __( 'Logo URL', 'optimise-creative-toolkit' ),
 				'type'    => 'url',
 				'default' => '',
-				'help'    => 'Leave blank to use the site icon, or the site name if none is set.',
+				'help'    => __( 'Leave blank to use the site icon, or the site name if none is set.', 'optimise-creative-toolkit' ),
 			],
 			[
 				'key'     => 'logo_width',
-				'label'   => 'Logo width (px)',
+				'label'   => __( 'Logo width (px)', 'optimise-creative-toolkit' ),
 				'type'    => 'number',
 				'default' => 200,
 			],
 			[
 				'key'     => 'accent',
-				'label'   => 'Accent colour',
+				'label'   => __( 'Accent colour', 'optimise-creative-toolkit' ),
 				'type'    => 'color',
 				'default' => '#6C4860',
 			],
 			[
 				'key'     => 'background',
-				'label'   => 'Background colour',
+				'label'   => __( 'Background colour', 'optimise-creative-toolkit' ),
 				'type'    => 'color',
 				'default' => '#FCF9F4',
 			],
 			[
 				'key'     => 'credit',
-				'label'   => 'Show "Site by Optimise Creative" link on the login page',
+				'label'   => __( 'Show "Site by Optimise Creative" link on the login page', 'optimise-creative-toolkit' ),
 				'type'    => 'checkbox',
 				'default' => 0,
 			],
@@ -115,7 +115,7 @@ final class OPTK_Login extends OPTK_Module {
 		printf(
 			'<p class="optk-credit">%s <a href="%s" target="_blank" rel="noopener">Optimise Creative</a></p>',
 			esc_html__( 'Site by', 'optimise-creative-toolkit' ),
-			esc_url( optk_link( '', 'login-credit' ) )
+			esc_url( optk_link( '' ) )
 		);
 	}
 }

@@ -16,12 +16,12 @@ final class OPTK_Comments_Off extends OPTK_Module {
 
 	/** {@inheritdoc} */
 	public function label(): string {
-		return 'Optimise Comments Off';
+		return __( 'Optimise Comments Off', 'optimise-creative-toolkit' );
 	}
 
 	/** {@inheritdoc} */
 	public function description(): string {
-		return 'Switches comments off across the whole site, front end and admin.';
+		return __( 'Switches comments off across the whole site, front end and admin.', 'optimise-creative-toolkit' );
 	}
 
 	/** {@inheritdoc} */

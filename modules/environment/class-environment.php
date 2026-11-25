@@ -21,12 +21,12 @@ final class OPTK_Environment extends OPTK_Module {
 
 	/** {@inheritdoc} */
 	public function label(): string {
-		return 'Optimise Environment';
+		return __( 'Optimise Environment', 'optimise-creative-toolkit' );
 	}
 
 	/** {@inheritdoc} */
 	public function description(): string {
-		return 'Colours the admin bar on local and staging sites so you never edit the wrong one.';
+		return __( 'Colours the admin bar on local and staging sites so you never edit the wrong one.', 'optimise-creative-toolkit' );
 	}
 
 	/** {@inheritdoc} */
@@ -34,22 +34,22 @@ final class OPTK_Environment extends OPTK_Module {
 		return [
 			[
 				'key'     => 'badge_production',
-				'label'   => 'Also show a LIVE badge on production',
+				'label'   => __( 'Also show a LIVE badge on production', 'optimise-creative-toolkit' ),
 				'type'    => 'checkbox',
 				'default' => 0,
 			],
 			[
 				'key'     => 'title_prefix',
-				'label'   => 'Add the environment to admin tab titles, e.g. [STAGING]',
+				'label'   => __( 'Add the environment to admin tab titles, e.g. [STAGING]', 'optimise-creative-toolkit' ),
 				'type'    => 'checkbox',
 				'default' => 1,
 			],
 			[
 				'key'     => 'noindex',
-				'label'   => 'Hide non-production sites from search engines',
+				'label'   => __( 'Hide non-production sites from search engines', 'optimise-creative-toolkit' ),
 				'type'    => 'checkbox',
 				'default' => 1,
-				'help'    => 'Adds noindex, nofollow on local, development and staging sites. Set WP_ENVIRONMENT_TYPE in wp-config.php.',
+				'help'    => __( 'Adds noindex, nofollow on local, development and staging sites. Set WP_ENVIRONMENT_TYPE in wp-config.php.', 'optimise-creative-toolkit' ),
 			],
 		];
 	}

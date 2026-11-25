@@ -24,12 +24,12 @@ final class OPTK_Client_Mode extends OPTK_Module {
 
 	/** {@inheritdoc} */
 	public function label(): string {
-		return 'Optimise Client Mode';
+		return __( 'Optimise Client Mode', 'optimise-creative-toolkit' );
 	}
 
 	/** {@inheritdoc} */
 	public function description(): string {
-		return 'Simplifies the dashboard for clients and stops them changing plugins, themes or core.';
+		return __( 'Simplifies the dashboard for clients and stops them changing plugins, themes or core.', 'optimise-creative-toolkit' );
 	}
 
 	/** {@inheritdoc} */
@@ -37,50 +37,50 @@ final class OPTK_Client_Mode extends OPTK_Module {
 		return [
 			[
 				'key'     => 'developers',
-				'label'   => 'Developer usernames',
+				'label'   => __( 'Developer usernames', 'optimise-creative-toolkit' ),
 				'type'    => 'textarea',
 				'default' => '',
-				'help'    => 'One per line or comma-separated. These accounts are never restricted. If empty, nobody is restricted.',
+				'help'    => __( 'One per line or comma-separated. These accounts are never restricted. If empty, nobody is restricted.', 'optimise-creative-toolkit' ),
 			],
 			[
 				'key'     => 'hide_menus',
-				'label'   => 'Hide Plugins, Appearance → Themes, Tools and Settings menus',
+				'label'   => __( 'Hide Plugins, Appearance → Themes, Tools and Settings menus', 'optimise-creative-toolkit' ),
 				'type'    => 'checkbox',
 				'default' => 1,
 			],
 			[
 				'key'     => 'block_caps',
-				'label'   => 'Block installing, updating, editing and switching plugins, themes and core',
+				'label'   => __( 'Block installing, updating, editing and switching plugins, themes and core', 'optimise-creative-toolkit' ),
 				'type'    => 'checkbox',
 				'default' => 1,
 			],
 			[
 				'key'     => 'widget',
-				'label'   => 'Show a support widget on the dashboard',
+				'label'   => __( 'Show a support widget on the dashboard', 'optimise-creative-toolkit' ),
 				'type'    => 'checkbox',
 				'default' => 1,
 			],
 			[
 				'key'     => 'support_name',
-				'label'   => 'Support name',
+				'label'   => __( 'Support name', 'optimise-creative-toolkit' ),
 				'type'    => 'text',
 				'default' => '',
 			],
 			[
 				'key'     => 'support_email',
-				'label'   => 'Support email',
+				'label'   => __( 'Support email', 'optimise-creative-toolkit' ),
 				'type'    => 'text',
 				'default' => '',
 			],
 			[
 				'key'     => 'support_phone',
-				'label'   => 'Support phone',
+				'label'   => __( 'Support phone', 'optimise-creative-toolkit' ),
 				'type'    => 'text',
 				'default' => '',
 			],
 			[
 				'key'     => 'welcome',
-				'label'   => 'Widget message',
+				'label'   => __( 'Widget message', 'optimise-creative-toolkit' ),
 				'type'    => 'textarea',
 				'default' => 'Need a hand with your website? Get in touch and we will sort it.',
 			],
@@ -229,7 +229,7 @@ final class OPTK_Client_Mode extends OPTK_Module {
 	/** Adds the support widget to the dashboard for restricted users. */
 	public function add_dashboard_widget(): void {
 		if ( $this->is_restricted() ) {
-			wp_add_dashboard_widget( 'optk_client_support', 'Website support', [ $this, 'render_widget' ] );
+			wp_add_dashboard_widget( 'optk_client_support', __( 'Website support', 'optimise-creative-toolkit' ), [ $this, 'render_widget' ] );
 		}
 	}
 

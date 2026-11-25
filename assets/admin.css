@@ -75,9 +75,6 @@
 
 .optk-heart { display: inline-block; vertical-align: -2px; color: var(--optk-red); }
 
-/* Alt audit */
-.optk-cta { margin-top: 12px; color: var(--optk-muted); }
-.optk-cta a { font-weight: 600; }
 
 @media (max-width: 600px) {
 	.optk-header { flex-wrap: wrap; padding: 16px; }

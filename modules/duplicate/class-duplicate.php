@@ -16,12 +16,12 @@ final class OPTK_Duplicate extends OPTK_Module {
 
 	/** {@inheritdoc} */
 	public function label(): string {
-		return 'Optimise Duplicate';
+		return __( 'Optimise Duplicate', 'optimise-creative-toolkit' );
 	}
 
 	/** {@inheritdoc} */
 	public function description(): string {
-		return 'Adds a Duplicate link to posts and pages that copies them into a new draft.';
+		return __( 'Adds a Duplicate link to posts and pages that copies them into a new draft.', 'optimise-creative-toolkit' );
 	}
 
 	/** {@inheritdoc} */

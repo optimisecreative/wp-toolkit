@@ -16,12 +16,12 @@ final class OPTK_Security extends OPTK_Module {
 
 	/** {@inheritdoc} */
 	public function label(): string {
-		return 'Optimise Security Headers';
+		return __( 'Optimise Security Headers', 'optimise-creative-toolkit' );
 	}
 
 	/** {@inheritdoc} */
 	public function description(): string {
-		return 'Adds standard browser security headers and stops visitors finding your usernames.';
+		return __( 'Adds standard browser security headers and stops visitors finding your usernames.', 'optimise-creative-toolkit' );
 	}
 
 	/** {@inheritdoc} */
@@ -29,42 +29,42 @@ final class OPTK_Security extends OPTK_Module {
 		return [
 			[
 				'key'     => 'nosniff',
-				'label'   => 'X-Content-Type-Options: nosniff',
+				'label'   => __( 'X-Content-Type-Options: nosniff', 'optimise-creative-toolkit' ),
 				'type'    => 'checkbox',
 				'default' => 1,
 			],
 			[
 				'key'     => 'frame',
-				'label'   => 'X-Frame-Options: SAMEORIGIN',
+				'label'   => __( 'X-Frame-Options: SAMEORIGIN', 'optimise-creative-toolkit' ),
 				'type'    => 'checkbox',
 				'default' => 1,
-				'help'    => 'Stops other sites embedding yours in a frame.',
+				'help'    => __( 'Stops other sites embedding yours in a frame.', 'optimise-creative-toolkit' ),
 			],
 			[
 				'key'     => 'referrer',
-				'label'   => 'Referrer-Policy: strict-origin-when-cross-origin',
+				'label'   => __( 'Referrer-Policy: strict-origin-when-cross-origin', 'optimise-creative-toolkit' ),
 				'type'    => 'checkbox',
 				'default' => 1,
 			],
 			[
 				'key'     => 'permissions',
-				'label'   => 'Permissions-Policy: block camera, microphone and location',
+				'label'   => __( 'Permissions-Policy: block camera, microphone and location', 'optimise-creative-toolkit' ),
 				'type'    => 'checkbox',
 				'default' => 1,
 			],
 			[
 				'key'     => 'hsts',
-				'label'   => 'Strict-Transport-Security (HSTS)',
+				'label'   => __( 'Strict-Transport-Security (HSTS)', 'optimise-creative-toolkit' ),
 				'type'    => 'checkbox',
 				'default' => 0,
-				'help'    => 'Only switch on once the whole site, including subdomains you use, works over HTTPS. Browsers remember it for a year.',
+				'help'    => __( 'Only switch on once the whole site, including subdomains you use, works over HTTPS. Browsers remember it for a year.', 'optimise-creative-toolkit' ),
 			],
 			[
 				'key'     => 'users',
-				'label'   => 'Hide usernames from visitors',
+				'label'   => __( 'Hide usernames from visitors', 'optimise-creative-toolkit' ),
 				'type'    => 'checkbox',
 				'default' => 1,
-				'help'    => 'Blocks ?author= scans and the public REST users list. Logged-in users are unaffected.',
+				'help'    => __( 'Blocks ?author= scans and the public REST users list. Logged-in users are unaffected.', 'optimise-creative-toolkit' ),
 			],
 		];
 	}

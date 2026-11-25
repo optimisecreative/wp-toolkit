@@ -16,12 +16,12 @@ final class OPTK_Clean extends OPTK_Module {
 
 	/** {@inheritdoc} */
 	public function label(): string {
-		return 'Optimise Clean';
+		return __( 'Optimise Clean', 'optimise-creative-toolkit' );
 	}
 
 	/** {@inheritdoc} */
 	public function description(): string {
-		return 'Removes WordPress features most sites never use, for a lighter front end.';
+		return __( 'Removes WordPress features most sites never use, for a lighter front end.', 'optimise-creative-toolkit' );
 	}
 
 	/** {@inheritdoc} */
@@ -29,43 +29,43 @@ final class OPTK_Clean extends OPTK_Module {
 		return [
 			[
 				'key'     => 'emojis',
-				'label'   => 'Remove emoji scripts',
+				'label'   => __( 'Remove emoji scripts', 'optimise-creative-toolkit' ),
 				'type'    => 'checkbox',
 				'default' => 1,
 			],
 			[
 				'key'     => 'embeds',
-				'label'   => 'Remove oEmbed and embed script',
+				'label'   => __( 'Remove oEmbed and embed script', 'optimise-creative-toolkit' ),
 				'type'    => 'checkbox',
 				'default' => 1,
 			],
 			[
 				'key'     => 'xmlrpc',
-				'label'   => 'Disable XML-RPC',
+				'label'   => __( 'Disable XML-RPC', 'optimise-creative-toolkit' ),
 				'type'    => 'checkbox',
 				'default' => 1,
 			],
 			[
 				'key'     => 'head_links',
-				'label'   => 'Remove unused head links',
+				'label'   => __( 'Remove unused head links', 'optimise-creative-toolkit' ),
 				'type'    => 'checkbox',
 				'default' => 1,
 			],
 			[
 				'key'     => 'jquery_migrate',
-				'label'   => 'Remove jQuery Migrate on front end',
+				'label'   => __( 'Remove jQuery Migrate on front end', 'optimise-creative-toolkit' ),
 				'type'    => 'checkbox',
 				'default' => 1,
 			],
 			[
 				'key'     => 'dashicons',
-				'label'   => 'Remove Dashicons for guests',
+				'label'   => __( 'Remove Dashicons for guests', 'optimise-creative-toolkit' ),
 				'type'    => 'checkbox',
 				'default' => 1,
 			],
 			[
 				'key'     => 'heartbeat',
-				'label'   => 'Slow Heartbeat API to 60 seconds',
+				'label'   => __( 'Slow Heartbeat API to 60 seconds', 'optimise-creative-toolkit' ),
 				'type'    => 'checkbox',
 				'default' => 0,
 			],

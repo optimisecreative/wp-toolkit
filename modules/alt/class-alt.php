@@ -16,12 +16,12 @@ final class OPTK_Alt extends OPTK_Module {
 
 	/** {@inheritdoc} */
 	public function label(): string {
-		return 'Optimise Alt';
+		return __( 'Optimise Alt', 'optimise-creative-toolkit' );
 	}
 
 	/** {@inheritdoc} */
 	public function description(): string {
-		return 'Finds images with no alt text and lets you fix them in one place, for accessibility and SEO.';
+		return __( 'Finds images with no alt text and lets you fix them in one place, for accessibility and SEO.', 'optimise-creative-toolkit' );
 	}
 
 	/** {@inheritdoc} */
@@ -135,15 +135,6 @@ final class OPTK_Alt extends OPTK_Module {
 			'<div style="background:#dcdcde;border-radius:4px;height:10px;max-width:400px;overflow:hidden"><div style="background:#6C4860;height:100%%;width:%d%%"></div></div>',
 			(int) $percent
 		);
-
-		if ( $missing > 0 && $percent < 80 ) {
-			printf(
-				'<p class="optk-cta">%s <a href="%s" target="_blank" rel="noopener">%s</a></p>',
-				esc_html__( 'Missing alt text is often a sign of wider accessibility issues.', 'optimise-creative-toolkit' ),
-				esc_url( optk_link( 'website-accessibility-fixes/', 'alt-audit' ) ),
-				esc_html__( 'Get an accessibility review from Optimise Creative', 'optimise-creative-toolkit' )
-			);
-		}
 
 		if ( 0 === $missing ) {
 			echo '<div class="notice notice-success inline"><p>' . esc_html__( 'Every image has alt text. Nice work.', 'optimise-creative-toolkit' ) . '</p></div>';

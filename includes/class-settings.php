@@ -24,7 +24,7 @@ final class OPTK_Settings {
 	public static function header( string $title, string $subtitle = '' ): void {
 		?>
 		<div class="optk-header">
-			<a class="optk-header-logo" href="<?php echo esc_url( optk_link( '', 'header-logo' ) ); ?>" target="_blank" rel="noopener">
+			<a class="optk-header-logo" href="<?php echo esc_url( optk_link( '' ) ); ?>" target="_blank" rel="noopener">
 				<img src="<?php echo esc_url( OPTK_URL . 'assets/logo.png' ); ?>" width="64" height="37" alt="<?php esc_attr_e( 'Optimise Creative website (opens in a new tab)', 'optimise-creative-toolkit' ); ?>">
 			</a>
 			<div class="optk-header-text">
@@ -177,7 +177,7 @@ final class OPTK_Settings {
 
 			<div class="optk-card optk-about">
 				<div class="optk-about-head">
-					<a class="optk-about-logo" href="<?php echo esc_url( optk_link( '', 'about-logo' ) ); ?>" target="_blank" rel="noopener">
+					<a class="optk-about-logo" href="<?php echo esc_url( optk_link( '' ) ); ?>" target="_blank" rel="noopener">
 						<img src="<?php echo esc_url( OPTK_URL . 'assets/logo.png' ); ?>" width="96" height="56" alt="<?php esc_attr_e( 'Optimise Creative website (opens in a new tab)', 'optimise-creative-toolkit' ); ?>">
 					</a>
 					<div>
@@ -187,14 +187,14 @@ final class OPTK_Settings {
 							printf( esc_html__( 'Made with %s by Optimise Creative', 'optimise-creative-toolkit' ), '<svg class="optk-heart" role="img" aria-label="' . esc_attr__( 'love', 'optimise-creative-toolkit' ) . '" viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M12 21s-7.5-4.6-10-9.3C.4 8.6 2 4.5 5.9 4.1 8.4 3.8 10.3 5.3 12 7.4c1.7-2.1 3.6-3.6 6.1-3.3C22 4.5 23.6 8.6 22 11.7 19.5 16.4 12 21 12 21z"/></svg>' );
 							?>
 						</h2>
-						<a class="optk-about-domain" href="<?php echo esc_url( optk_link( '', 'about-domain' ) ); ?>" target="_blank" rel="noopener">optimisecreative.com</a>
+						<a class="optk-about-domain" href="<?php echo esc_url( optk_link( '' ) ); ?>" target="_blank" rel="noopener">optimisecreative.com</a>
 					</div>
 				</div>
 				<p><?php esc_html_e( 'Optimise Creative Toolkit is free and always will be. We are a UK studio that builds fast, search-friendly WordPress sites, and this is the toolkit we install on every one of them.', 'optimise-creative-toolkit' ); ?></p>
 				<p><?php esc_html_e( 'If your site needs more than a toolkit, such as speed work, a security review, accessibility fixes or a custom plugin, we can help.', 'optimise-creative-toolkit' ); ?></p>
 				<p>
-					<a class="button button-primary" href="<?php echo esc_url( optk_link( 'contact/', 'about-card' ) ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'Talk to us about your site', 'optimise-creative-toolkit' ); ?></a>
-					<a class="button" href="<?php echo esc_url( optk_link( 'services/', 'about-card' ) ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'See our services', 'optimise-creative-toolkit' ); ?></a>
+					<a class="button" href="<?php echo esc_url( optk_link( 'contact/' ) ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'Talk to us about your site', 'optimise-creative-toolkit' ); ?></a>
+					<a class="button" href="<?php echo esc_url( optk_link( 'services/' ) ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'See our services', 'optimise-creative-toolkit' ); ?></a>
 				</p>
 			</div>
 

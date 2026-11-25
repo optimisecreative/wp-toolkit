@@ -16,12 +16,12 @@ final class OPTK_Mail_From extends OPTK_Module {
 
 	/** {@inheritdoc} */
 	public function label(): string {
-		return 'Optimise Mail From';
+		return __( 'Optimise Mail From', 'optimise-creative-toolkit' );
 	}
 
 	/** {@inheritdoc} */
 	public function description(): string {
-		return 'Sends site emails from your business name and address instead of "WordPress".';
+		return __( 'Sends site emails from your business name and address instead of "WordPress".', 'optimise-creative-toolkit' );
 	}
 
 	/** {@inheritdoc} */
@@ -29,24 +29,24 @@ final class OPTK_Mail_From extends OPTK_Module {
 		return [
 			[
 				'key'     => 'from_name',
-				'label'   => 'From name',
+				'label'   => __( 'From name', 'optimise-creative-toolkit' ),
 				'type'    => 'text',
 				'default' => '',
-				'help'    => 'Leave blank to use the site title.',
+				'help'    => __( 'Leave blank to use the site title.', 'optimise-creative-toolkit' ),
 			],
 			[
 				'key'     => 'from_email',
-				'label'   => 'From email',
+				'label'   => __( 'From email', 'optimise-creative-toolkit' ),
 				'type'    => 'text',
 				'default' => '',
-				'help'    => 'Use an address on this site\'s domain so emails are not flagged as spam. Leave blank to keep the WordPress default.',
+				'help'    => __( 'Use an address on this site\'s domain so emails are not flagged as spam. Leave blank to keep the WordPress default.', 'optimise-creative-toolkit' ),
 			],
 			[
 				'key'     => 'only_default',
-				'label'   => 'Only replace the WordPress defaults',
+				'label'   => __( 'Only replace the WordPress defaults', 'optimise-creative-toolkit' ),
 				'type'    => 'checkbox',
 				'default' => 1,
-				'help'    => 'Leaves alone emails where another plugin has already set a sender, such as contact forms.',
+				'help'    => __( 'Leaves alone emails where another plugin has already set a sender, such as contact forms.', 'optimise-creative-toolkit' ),
 			],
 		];
 	}

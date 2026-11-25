@@ -29,12 +29,12 @@ final class OPTK_Scripts extends OPTK_Module {
 
 	/** {@inheritdoc} */
 	public function label(): string {
-		return 'Optimise Scripts';
+		return __( 'Optimise Scripts', 'optimise-creative-toolkit' );
 	}
 
 	/** {@inheritdoc} */
 	public function description(): string {
-		return 'Adds Google Analytics, Tag Manager, Meta Pixel and search engine verification from their IDs, without editing the theme.';
+		return __( 'Adds Google Analytics, Tag Manager, Meta Pixel and search engine verification from their IDs, without editing the theme.', 'optimise-creative-toolkit' );
 	}
 
 	/** {@inheritdoc} */
@@ -42,45 +42,45 @@ final class OPTK_Scripts extends OPTK_Module {
 		return [
 			[
 				'key'     => 'ga4_id',
-				'label'   => 'Google Analytics 4 measurement ID',
+				'label'   => __( 'Google Analytics 4 measurement ID', 'optimise-creative-toolkit' ),
 				'type'    => 'text',
 				'default' => '',
-				'help'    => 'Looks like G-XXXXXXXXXX. Leave blank if you load Analytics through Tag Manager.',
+				'help'    => __( 'Looks like G-XXXXXXXXXX. Leave blank if you load Analytics through Tag Manager.', 'optimise-creative-toolkit' ),
 			],
 			[
 				'key'     => 'gtm_id',
-				'label'   => 'Google Tag Manager container ID',
+				'label'   => __( 'Google Tag Manager container ID', 'optimise-creative-toolkit' ),
 				'type'    => 'text',
 				'default' => '',
-				'help'    => 'Looks like GTM-XXXXXXX. The noscript fallback needs a theme that supports wp_body_open.',
+				'help'    => __( 'Looks like GTM-XXXXXXX. The noscript fallback needs a theme that supports wp_body_open.', 'optimise-creative-toolkit' ),
 			],
 			[
 				'key'     => 'meta_pixel_id',
-				'label'   => 'Meta Pixel ID',
+				'label'   => __( 'Meta Pixel ID', 'optimise-creative-toolkit' ),
 				'type'    => 'text',
 				'default' => '',
-				'help'    => 'The number shown in Meta Events Manager.',
+				'help'    => __( 'The number shown in Meta Events Manager.', 'optimise-creative-toolkit' ),
 			],
 			[
 				'key'     => 'google_verification',
-				'label'   => 'Google Search Console verification code',
+				'label'   => __( 'Google Search Console verification code', 'optimise-creative-toolkit' ),
 				'type'    => 'text',
 				'default' => '',
-				'help'    => 'Only the content value from the google-site-verification meta tag.',
+				'help'    => __( 'Only the content value from the google-site-verification meta tag.', 'optimise-creative-toolkit' ),
 			],
 			[
 				'key'     => 'bing_verification',
-				'label'   => 'Bing Webmaster Tools verification code',
+				'label'   => __( 'Bing Webmaster Tools verification code', 'optimise-creative-toolkit' ),
 				'type'    => 'text',
 				'default' => '',
-				'help'    => 'Only the content value from the msvalidate.01 meta tag.',
+				'help'    => __( 'Only the content value from the msvalidate.01 meta tag.', 'optimise-creative-toolkit' ),
 			],
 			[
 				'key'     => 'skip_logged_in',
-				'label'   => 'Do not load tracking for logged-in admins and editors',
+				'label'   => __( 'Do not load tracking for logged-in admins and editors', 'optimise-creative-toolkit' ),
 				'type'    => 'checkbox',
 				'default' => 1,
-				'help'    => 'Keeps your own visits out of analytics. Verification tags are always added.',
+				'help'    => __( 'Keeps your own visits out of analytics. Verification tags are always added.', 'optimise-creative-toolkit' ),
 			],
 		];
 	}
@@ -142,6 +142,7 @@ final class OPTK_Scripts extends OPTK_Module {
 				null, // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion -- Google serves this file; a version query would not change it.
 				[ 'strategy' => 'async', 'in_footer' => false ]
 			);
+			// Google's official gtag.js configuration snippet, with the measurement ID passed in via wp_json_encode().
 			wp_add_inline_script(
 				'optk-ga4',
 				'window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config",' . wp_json_encode( $ga4 ) . ');',
@@ -153,6 +154,7 @@ final class OPTK_Scripts extends OPTK_Module {
 		if ( '' !== $gtm ) {
 			wp_register_script( 'optk-gtm', false, [], OPTK_VERSION, [ 'in_footer' => false ] );
 			wp_enqueue_script( 'optk-gtm' );
+			// Google's official Tag Manager loader snippet, with the container ID passed in via wp_json_encode().
 			wp_add_inline_script(
 				'optk-gtm',
 				'(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({"gtm.start":new Date().getTime(),event:"gtm.js"});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src="https://www.googletagmanager.com/gtm.js?id="+i+dl;f.parentNode.insertBefore(j,f);})(window,document,"script","dataLayer",' . wp_json_encode( $gtm ) . ');'
@@ -163,6 +165,7 @@ final class OPTK_Scripts extends OPTK_Module {
 		if ( '' !== $pixel ) {
 			wp_register_script( 'optk-meta-pixel', false, [], OPTK_VERSION, [ 'in_footer' => false ] );
 			wp_enqueue_script( 'optk-meta-pixel' );
+			// Meta's official Pixel base code, with the Pixel ID passed in via wp_json_encode().
 			wp_add_inline_script(
 				'optk-meta-pixel',
 				'!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version="2.0";n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,"script","https://connect.facebook.net/en_US/fbevents.js");fbq("init",' . wp_json_encode( $pixel ) . ');fbq("track","PageView");'

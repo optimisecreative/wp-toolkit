@@ -16,12 +16,12 @@ final class OPTK_Lazy_Hero extends OPTK_Module {
 
 	/** {@inheritdoc} */
 	public function label(): string {
-		return 'Optimise Lazy Hero';
+		return __( 'Optimise Lazy Hero', 'optimise-creative-toolkit' );
 	}
 
 	/** {@inheritdoc} */
 	public function description(): string {
-		return 'Stops the first images being lazy-loaded and preloads the featured image, for a faster Largest Contentful Paint.';
+		return __( 'Stops the first images being lazy-loaded and preloads the featured image, for a faster Largest Contentful Paint.', 'optimise-creative-toolkit' );
 	}
 
 	/** {@inheritdoc} */
@@ -29,26 +29,26 @@ final class OPTK_Lazy_Hero extends OPTK_Module {
 		return [
 			[
 				'key'     => 'skip',
-				'label'   => 'Images to load eagerly',
+				'label'   => __( 'Images to load eagerly', 'optimise-creative-toolkit' ),
 				'type'    => 'number',
 				'default' => 3,
-				'help'    => 'How many images at the top of each page skip lazy-loading. WordPress uses 3 by default; raise it if your hero sits below a logo or slider.',
+				'help'    => __( 'How many images at the top of each page skip lazy-loading. WordPress uses 3 by default; raise it if your hero sits below a logo or slider.', 'optimise-creative-toolkit' ),
 			],
 			[
 				'key'     => 'preload',
-				'label'   => 'Preload the featured image on posts and pages',
+				'label'   => __( 'Preload the featured image on posts and pages', 'optimise-creative-toolkit' ),
 				'type'    => 'checkbox',
 				'default' => 1,
 			],
 			[
 				'key'     => 'preload_size',
-				'label'   => 'Featured image size to preload',
+				'label'   => __( 'Featured image size to preload', 'optimise-creative-toolkit' ),
 				'type'    => 'select',
 				'default' => 'large',
 				'options' => [
-					'medium_large' => 'Medium large',
-					'large'        => 'Large',
-					'full'         => 'Full',
+					'medium_large' => __( 'Medium large', 'optimise-creative-toolkit' ),
+					'large'        => __( 'Large', 'optimise-creative-toolkit' ),
+					'full'         => __( 'Full', 'optimise-creative-toolkit' ),
 				],
 			],
 		];

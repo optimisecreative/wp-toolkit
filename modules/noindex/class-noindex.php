@@ -16,12 +16,12 @@ final class OPTK_Noindex extends OPTK_Module {
 
 	/** {@inheritdoc} */
 	public function label(): string {
-		return 'Optimise Noindex';
+		return __( 'Optimise Noindex', 'optimise-creative-toolkit' );
 	}
 
 	/** {@inheritdoc} */
 	public function description(): string {
-		return 'Keeps thin archive pages out of search results so Google focuses on the pages that matter.';
+		return __( 'Keeps thin archive pages out of search results so Google focuses on the pages that matter.', 'optimise-creative-toolkit' );
 	}
 
 	/** {@inheritdoc} */
@@ -29,46 +29,46 @@ final class OPTK_Noindex extends OPTK_Module {
 		return [
 			[
 				'key'     => 'tags',
-				'label'   => 'Tag archives',
+				'label'   => __( 'Tag archives', 'optimise-creative-toolkit' ),
 				'type'    => 'checkbox',
 				'default' => 1,
 			],
 			[
 				'key'     => 'categories',
-				'label'   => 'Category archives',
+				'label'   => __( 'Category archives', 'optimise-creative-toolkit' ),
 				'type'    => 'checkbox',
 				'default' => 0,
 			],
 			[
 				'key'     => 'authors',
-				'label'   => 'Author archives',
+				'label'   => __( 'Author archives', 'optimise-creative-toolkit' ),
 				'type'    => 'checkbox',
 				'default' => 1,
 			],
 			[
 				'key'     => 'dates',
-				'label'   => 'Date archives',
+				'label'   => __( 'Date archives', 'optimise-creative-toolkit' ),
 				'type'    => 'checkbox',
 				'default' => 1,
 			],
 			[
 				'key'     => 'attachments',
-				'label'   => 'Attachment pages',
+				'label'   => __( 'Attachment pages', 'optimise-creative-toolkit' ),
 				'type'    => 'checkbox',
 				'default' => 1,
 			],
 			[
 				'key'     => 'paged',
-				'label'   => 'Page 2 onwards of any archive',
+				'label'   => __( 'Page 2 onwards of any archive', 'optimise-creative-toolkit' ),
 				'type'    => 'checkbox',
 				'default' => 0,
 			],
 			[
 				'key'     => 'sitemap',
-				'label'   => 'Also remove these from the WordPress sitemap',
+				'label'   => __( 'Also remove these from the WordPress sitemap', 'optimise-creative-toolkit' ),
 				'type'    => 'checkbox',
 				'default' => 1,
-				'help'    => 'Only affects the built-in sitemap at /wp-sitemap.xml. If an SEO plugin such as Yoast or Rank Math is active, use its settings instead.',
+				'help'    => __( 'Only affects the built-in sitemap at /wp-sitemap.xml. If an SEO plugin such as Yoast or Rank Math is active, use its settings instead.', 'optimise-creative-toolkit' ),
 			],
 		];
 	}

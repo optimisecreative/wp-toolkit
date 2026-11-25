@@ -32,24 +32,15 @@ foreach ( glob( OPTK_DIR . 'modules/*/class-*.php' ) as $optk_module_file ) {
 unset( $optk_module_file );
 
 /**
- * Builds a link to optimisecreative.com with UTM tags, so visits from the plugin can be measured.
- * Links only; the plugin never sends data anywhere.
+ * Returns a plain link to a page on optimisecreative.com. No tracking parameters are added.
  *
- * @param string $path    Path on the site, e.g. 'contact/'.
- * @param string $content Where in the plugin the link sits, e.g. 'about-card'.
+ * @param string $path Path on the site, e.g. 'contact/'.
  */
-function optk_link( string $path = '', string $content = '' ): string {
-	$args = [
-		'utm_source'   => 'optimise-creative-toolkit',
-		'utm_medium'   => 'plugin',
-		'utm_campaign' => 'wp-admin',
-	];
-	if ( '' !== $content ) {
-		$args['utm_content'] = $content;
-	}
-	return add_query_arg( $args, 'https://optimisecreative.com/' . ltrim( $path, '/' ) );
+function optk_link( string $path = '' ): string {
+	return 'https://optimisecreative.com/' . ltrim( $path, '/' );
 }
 
-add_action( 'plugins_loaded', static function () {
+// Boot on init: module settings use translated strings, which WordPress expects to load no earlier than init.
+add_action( 'init', static function () {
 	( new OPTK_Plugin() )->init();
-} );
+}, 0 );

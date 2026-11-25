@@ -16,12 +16,12 @@ final class OPTK_Upload_Guard extends OPTK_Module {
 
 	/** {@inheritdoc} */
 	public function label(): string {
-		return 'Optimise Upload Guard';
+		return __( 'Optimise Upload Guard', 'optimise-creative-toolkit' );
 	}
 
 	/** {@inheritdoc} */
 	public function description(): string {
-		return 'Stops oversized images slowing the site: shrinks big photos on upload and can block huge files.';
+		return __( 'Stops oversized images slowing the site: shrinks big photos on upload and can block huge files.', 'optimise-creative-toolkit' );
 	}
 
 	/** {@inheritdoc} */
@@ -29,20 +29,20 @@ final class OPTK_Upload_Guard extends OPTK_Module {
 		return [
 			[
 				'key'     => 'max_px',
-				'label'   => 'Maximum image dimension (px)',
+				'label'   => __( 'Maximum image dimension (px)', 'optimise-creative-toolkit' ),
 				'type'    => 'number',
 				'default' => 2000,
-				'help'    => 'Larger images are scaled down on upload. The original is kept by WordPress.',
+				'help'    => __( 'Larger images are scaled down on upload. The original is kept by WordPress.', 'optimise-creative-toolkit' ),
 			],
 			[
 				'key'     => 'block',
-				'label'   => 'Block image uploads over the size limit',
+				'label'   => __( 'Block image uploads over the size limit', 'optimise-creative-toolkit' ),
 				'type'    => 'checkbox',
 				'default' => 1,
 			],
 			[
 				'key'     => 'max_mb',
-				'label'   => 'Maximum image file size (MB)',
+				'label'   => __( 'Maximum image file size (MB)', 'optimise-creative-toolkit' ),
 				'type'    => 'number',
 				'default' => 5,
 			],

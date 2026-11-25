@@ -8,11 +8,11 @@ Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Switch on only the performance and login tweaks your site needs. Every module is off by default.
+Lightweight speed, SEO, security and admin tools from Optimise Creative. Switch on only the modules you need.
 
 == Description ==
 
-Optimise Creative Toolkit is a modular set of performance and login tweaks. Each module is off by default and does nothing until you switch it on, so a site only carries the changes it actually uses.
+Optimise Creative Toolkit is a modular set of speed, SEO, security and admin tools. Each module is off by default and does nothing until you switch it on, so a site only carries the changes it actually uses.
 
 * Each module is off by default.
 * A module that is off registers no hooks, so it does nothing on your site.
@@ -47,9 +47,7 @@ Optimise Creative Toolkit does not collect, store or send any data about you, yo
 
 = About Optimise Creative =
 
-Optimise Creative Toolkit is built and maintained by [Optimise Creative](https://optimisecreative.com/?utm_source=wordpress.org&utm_medium=readme&utm_campaign=optimise-creative-toolkit), a UK web studio. It is the toolkit we install on every WordPress site we build, released free for everyone.
-
-Need more than a toolkit? We help with [WordPress speed optimisation](https://optimisecreative.com/wordpress-speed-optimisation/?utm_source=wordpress.org&utm_medium=readme&utm_campaign=optimise-creative-toolkit), [security reviews](https://optimisecreative.com/wordpress-security-review/?utm_source=wordpress.org&utm_medium=readme&utm_campaign=optimise-creative-toolkit), [accessibility fixes](https://optimisecreative.com/website-accessibility-fixes/?utm_source=wordpress.org&utm_medium=readme&utm_campaign=optimise-creative-toolkit) and [custom plugin development](https://optimisecreative.com/custom-wordpress-plugin-development/?utm_source=wordpress.org&utm_medium=readme&utm_campaign=optimise-creative-toolkit).
+Optimise Creative Toolkit is built and maintained by [Optimise Creative](https://optimisecreative.com/), a UK web studio. It is the toolkit we install on the WordPress sites we build, released free for everyone.
 
 == External services ==
 
@@ -88,7 +86,7 @@ No. Every module is free, with no upsells, licence keys or locked features.
 
 = Can you help with my site? =
 
-Yes. [Get in touch with Optimise Creative](https://optimisecreative.com/contact/?utm_source=wordpress.org&utm_medium=readme&utm_campaign=optimise-creative-toolkit) for speed, SEO, security or custom development work.
+Yes. You can [contact Optimise Creative](https://optimisecreative.com/contact/) for help with your WordPress site.
 
 == Changelog ==
 
@@ -97,6 +95,8 @@ Yes. [Get in touch with Optimise Creative](https://optimisecreative.com/contact/
 * Optimise Revisions no longer defines the global AUTOSAVE_INTERVAL constant; it only changes the block editor's autosave interval.
 * Settings export uses wp_send_json().
 * Added an External services section to this readme.
+* Links to optimisecreative.com no longer carry tracking parameters, the About card's buttons are secondary, and the Alt audit no longer shows a sales prompt.
+* Module names, descriptions, field labels and help text are now translatable.
 
 = 1.0.0 =
 * Initial release with 14 modules: Clean, Security Headers, Environment, Duplicate, Lazy Hero, Upload Guard, Alt, Noindex, Revisions, Comments Off, Scripts, Mail From, Client Mode and Login.
