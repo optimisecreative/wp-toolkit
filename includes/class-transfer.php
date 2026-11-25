@@ -59,10 +59,9 @@ final class OPTK_Transfer {
 		$filename = 'optimise-creative-toolkit-' . $host . '-' . gmdate( 'Y-m-d' ) . '.json';
 
 		nocache_headers();
-		header( 'Content-Type: application/json; charset=utf-8' );
-		header( 'Content-Disposition: attachment; filename="' . $filename . '"' );
-		echo wp_json_encode( $payload, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- JSON download.
-		exit;
+		header( 'Content-Disposition: attachment; filename="' . sanitize_file_name( $filename ) . '"' );
+		// Core sends the JSON content type, encodes the payload and exits.
+		wp_send_json( $payload, 200, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES );
 	}
 
 	public function import(): void {

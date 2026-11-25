@@ -29,8 +29,7 @@ abstract class OPTK_Module {
 	 * Each field: [
 	 *   'key'     => 'logo_url',                        // stored under this key
 	 *   'label'   => 'Logo URL',
-	 *   'type'    => 'checkbox'|'text'|'url'|'number'|'color'|'textarea'|'code'|'select',
-	 *                                                    // 'code' keeps raw HTML/JS; only unfiltered_html users can change it
+	 *   'type'    => 'checkbox'|'text'|'url'|'number'|'color'|'textarea'|'select',
 	 *   'default' => mixed,
 	 *   'options' => [ 'value' => 'Label' ],            // select only
 	 *   'help'    => 'Optional help text',

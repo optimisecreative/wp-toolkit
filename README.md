@@ -1,6 +1,6 @@
 # Optimise Creative Toolkit
 
-Free, modular WordPress tools from [Optimise Creative](https://optimisecreative.com/wp-toolkit/). Switch on only the modules a site needs. Every module is off by default and registers no hooks until you enable it. There are no upsells, no tracking and no external requests.
+Free, modular WordPress tools from [Optimise Creative](https://optimisecreative.com/wp-toolkit/). Switch on only the modules a site needs. Every module is off by default and registers no hooks until you enable it. There are no upsells, no tracking and no external requests from your server.
 
 **Requires:** WordPress 6.3+ · PHP 8.0+ · **Licence:** GPL-2.0-or-later
 
@@ -18,7 +18,7 @@ Free, modular WordPress tools from [Optimise Creative](https://optimisecreative.
 | Noindex | Keeps thin archive pages out of search results and the core sitemap |
 | Revisions | Limits stored revisions and slows autosave |
 | Comments Off | Switches comments off across the whole site |
-| Scripts | Head, body and footer code boxes for GA4, Tag Manager and pixels |
+| Scripts | Google Analytics 4, Tag Manager, Meta Pixel and verification tags from their IDs |
 | Mail From | Sends site emails from your business name instead of "WordPress" |
 | Client Mode | Simplifies the admin for clients and blocks plugin, theme and core changes; named developer accounts are never restricted |
 | Login | Brands the login screen with your logo and colours |

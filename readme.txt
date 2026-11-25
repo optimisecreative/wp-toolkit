@@ -4,7 +4,7 @@ Tags: performance, optimisation, alt text, client, login
 Requires at least: 6.3
 Tested up to: 7.1
 Requires PHP: 8.0
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -16,7 +16,7 @@ Optimise Creative Toolkit is a modular set of performance and login tweaks. Each
 
 * Each module is off by default.
 * A module that is off registers no hooks, so it does nothing on your site.
-* The plugin makes no external requests.
+* The plugin itself makes no external requests. Third-party services only load if you enter their IDs in Optimise Scripts (see External services).
 * All settings live in a single option row.
 * Everything is removed when the plugin is uninstalled.
 
@@ -32,7 +32,7 @@ Optimise Creative Toolkit is a modular set of performance and login tweaks. Each
 * **Optimise Noindex** keeps tag, author, date, attachment and other thin archive pages out of search results and the built-in sitemap.
 * **Optimise Revisions** caps how many revisions each post keeps and slows autosave, so the database stays lean.
 * **Optimise Comments Off** switches comments off everywhere: front end, admin menus, admin bar, feeds, REST API and XML-RPC.
-* **Optimise Scripts** adds head, body and footer code (GA4, Tag Manager, pixels, cookie banners) without editing the theme. Only users allowed raw HTML can change it.
+* **Optimise Scripts** adds Google Analytics 4, Google Tag Manager, Meta Pixel and Google or Bing verification tags from their IDs, without editing the theme or pasting code.
 * **Optimise Mail From** sends site emails from your business name and address instead of "WordPress".
 * **Optimise Client Mode** hides plugin, theme, tool and settings menus from clients, blocks plugin, theme and core changes, and adds a support widget. Named developer accounts are never restricted.
 * **Optimise Login** lets you change the login screen logo and colours, and optionally add a credit link (off by default).
@@ -43,13 +43,27 @@ Download a site's toolkit settings as a JSON file from the settings page and imp
 
 = Privacy =
 
-Optimise Creative Toolkit does not collect, store or send any data about you, your site or your visitors. It makes no external requests. Links to optimisecreative.com in the admin are ordinary links and only open if you click them.
+Optimise Creative Toolkit does not collect, store or send any data about you, your site or your visitors, and it makes no external requests from your server. Links to optimisecreative.com in the admin are ordinary links and only open if you click them. If you enter IDs in Optimise Scripts, your visitors' browsers load those third-party services; see External services.
 
 = About Optimise Creative =
 
 Optimise Creative Toolkit is built and maintained by [Optimise Creative](https://optimisecreative.com/?utm_source=wordpress.org&utm_medium=readme&utm_campaign=optimise-creative-toolkit), a UK web studio. It is the toolkit we install on every WordPress site we build, released free for everyone.
 
 Need more than a toolkit? We help with [WordPress speed optimisation](https://optimisecreative.com/wordpress-speed-optimisation/?utm_source=wordpress.org&utm_medium=readme&utm_campaign=optimise-creative-toolkit), [security reviews](https://optimisecreative.com/wordpress-security-review/?utm_source=wordpress.org&utm_medium=readme&utm_campaign=optimise-creative-toolkit), [accessibility fixes](https://optimisecreative.com/website-accessibility-fixes/?utm_source=wordpress.org&utm_medium=readme&utm_campaign=optimise-creative-toolkit) and [custom plugin development](https://optimisecreative.com/custom-wordpress-plugin-development/?utm_source=wordpress.org&utm_medium=readme&utm_campaign=optimise-creative-toolkit).
+
+== External services ==
+
+The plugin itself makes no external requests. Only the Optimise Scripts module can connect your visitors to third-party services, and only for the IDs you enter in its settings. Nothing loads for a blank field, and by default nothing loads for logged-in admins and editors.
+
+**Google Analytics 4** (Google LLC): measures site traffic. When a GA4 measurement ID is set, each visitor's browser loads `https://www.googletagmanager.com/gtag/js` and sends page views to Google, including the page URL, referrer, browser and device details and IP address. [Terms of service](https://marketingplatform.google.com/about/analytics/terms/us/), [Privacy policy](https://policies.google.com/privacy).
+
+**Google Tag Manager** (Google LLC): loads the tags configured in your container. When a container ID is set, each visitor's browser loads `https://www.googletagmanager.com/gtm.js` (or `ns.html` with JavaScript off). What is then sent depends on the tags in your container. [Terms of service](https://marketingplatform.google.com/about/analytics/tag-manager/use-policy/), [Privacy policy](https://policies.google.com/privacy).
+
+**Meta Pixel** (Meta Platforms, Inc.): measures ad conversions. When a Pixel ID is set, each visitor's browser loads `https://connect.facebook.net/en_US/fbevents.js` (or `https://www.facebook.com/tr` with JavaScript off) and sends a PageView event, including the page URL, browser details and IP address. [Meta Business Tools terms](https://www.facebook.com/legal/technology_terms), [Privacy policy](https://www.facebook.com/privacy/policy/).
+
+The Google and Bing verification fields only add a meta tag with the code you enter. They do not load anything.
+
+You are responsible for any consent your visitors must give before these services load, for example under UK GDPR and PECR.
 
 == Installation ==
 
@@ -62,7 +76,7 @@ Need more than a toolkit? We help with [WordPress speed optimisation](https://op
 
 = Does it slow my site down? =
 
-No. Modules that are switched off load no code, and the plugin makes no external requests. Active modules only make the changes you have chosen.
+No. Modules that are switched off register no hooks, and the plugin makes no external requests from your server. Active modules only make the changes you have chosen.
 
 = What happens on uninstall? =
 
@@ -77,6 +91,12 @@ No. Every module is free, with no upsells, licence keys or locked features.
 Yes. [Get in touch with Optimise Creative](https://optimisecreative.com/contact/?utm_source=wordpress.org&utm_medium=readme&utm_campaign=optimise-creative-toolkit) for speed, SEO, security or custom development work.
 
 == Changelog ==
+
+= 1.0.1 =
+* Optimise Scripts now takes Google Analytics 4, Tag Manager, Meta Pixel and verification IDs instead of raw code, and loads them through the WordPress script API.
+* Optimise Revisions no longer defines the global AUTOSAVE_INTERVAL constant; it only changes the block editor's autosave interval.
+* Settings export uses wp_send_json().
+* Added an External services section to this readme.
 
 = 1.0.0 =
 * Initial release with 14 modules: Clean, Security Headers, Environment, Duplicate, Lazy Hero, Upload Guard, Alt, Noindex, Revisions, Comments Off, Scripts, Mail From, Client Mode and Login.

@@ -21,7 +21,7 @@ final class OPTK_Revisions extends OPTK_Module {
 
 	/** {@inheritdoc} */
 	public function description(): string {
-		return 'Keeps the database lean by limiting how many revisions each post stores.';
+		return 'Keeps the database lean by limiting how many revisions each post stores and how often the block editor autosaves.';
 	}
 
 	/** {@inheritdoc} */
@@ -36,10 +36,10 @@ final class OPTK_Revisions extends OPTK_Module {
 			],
 			[
 				'key'     => 'autosave',
-				'label'   => 'Autosave interval (seconds)',
+				'label'   => 'Block editor autosave interval (seconds)',
 				'type'    => 'number',
 				'default' => 120,
-				'help'    => 'WordPress autosaves every 60 seconds by default.',
+				'help'    => 'How often the block editor autosaves drafts. WordPress uses 60 seconds by default.',
 			],
 		];
 	}
@@ -48,15 +48,7 @@ final class OPTK_Revisions extends OPTK_Module {
 	public function boot(): void {
 		add_filter( 'wp_revisions_to_keep', [ $this, 'keep_revisions' ], 20, 2 );
 
-		// Boot runs on plugins_loaded, before core sets its default, so define
-		// the constant here. If another plugin already defined it, leave it be.
-		$interval = max( 10, (int) $this->opt( 'autosave' ) );
-		if ( ! defined( 'AUTOSAVE_INTERVAL' ) ) {
-			define( 'AUTOSAVE_INTERVAL', $interval );
-		}
-
-		// The block editor reads its autosave interval from its own settings,
-		// so set it there too in case another plugin defined the constant first.
+		// Only the block editor's own setting is changed; the global AUTOSAVE_INTERVAL constant is left alone.
 		add_filter( 'block_editor_settings_all', [ $this, 'set_block_editor_autosave' ], 10, 2 );
 	}
 

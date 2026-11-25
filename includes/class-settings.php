@@ -100,17 +100,10 @@ final class OPTK_Settings {
 			}
 		}
 
-		$previous = get_option( OPTK_OPTION, [] );
-
 		foreach ( $this->modules as $id => $module ) {
 			$raw = $input['modules'][ $id ] ?? [];
 			foreach ( $module->fields() as $field ) {
 				$key = $field['key'];
-				if ( 'code' === $field['type'] && ! current_user_can( 'unfiltered_html' ) ) {
-					// Only users allowed raw HTML may change code fields; everyone else keeps the saved value.
-					$clean['modules'][ $id ][ $key ] = (string) ( $previous['modules'][ $id ][ $key ] ?? ( $field['default'] ?? '' ) );
-					continue;
-				}
 				$clean['modules'][ $id ][ $key ] = $this->sanitize_field( $field, $raw[ $key ] ?? null );
 			}
 		}
@@ -130,9 +123,6 @@ final class OPTK_Settings {
 				return sanitize_hex_color( (string) $value ) ?: ( $field['default'] ?? '' );
 			case 'textarea':
 				return sanitize_textarea_field( (string) $value );
-			case 'code':
-				// Raw HTML/JS, e.g. tracking snippets. Gated by unfiltered_html in sanitize().
-				return trim( (string) $value );
 			case 'select':
 				return array_key_exists( (string) $value, $field['options'] ?? [] ) ? (string) $value : ( $field['default'] ?? '' );
 			default:
@@ -228,14 +218,6 @@ final class OPTK_Settings {
 			printf( '<label for="%s">%s</label>', esc_attr( $id ), esc_html( $field['label'] ) );
 			if ( 'textarea' === $type ) {
 				printf( '<textarea id="%s" name="%s" rows="3" class="large-text">%s</textarea>', esc_attr( $id ), esc_attr( $name ), esc_textarea( (string) $value ) );
-			} elseif ( 'code' === $type ) {
-				printf(
-					'<textarea id="%s" name="%s" rows="5" class="large-text code" spellcheck="false"%s>%s</textarea>',
-					esc_attr( $id ),
-					esc_attr( $name ),
-					current_user_can( 'unfiltered_html' ) ? '' : ' readonly',
-					esc_textarea( (string) $value )
-				);
 			} elseif ( 'select' === $type ) {
 				printf( '<select id="%s" name="%s">', esc_attr( $id ), esc_attr( $name ) );
 				foreach ( $field['options'] ?? [] as $opt_value => $opt_label ) {
